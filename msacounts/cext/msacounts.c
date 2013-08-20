@@ -5,20 +5,6 @@
 
 #define N_ALPHA 21
 
-int fact(int n) {
-	if(n < 2) return 1;
-	return n * fact(n-1);
-}
-
-void make_array(int* counts, int ncounts, int factor) {
-
-	int i;
-	for(i = 0; i < ncounts; i++) {
-		counts[i] = i * factor;
-	}
-
-}
-
 void msa_count(int* counts, int ncounts, unsigned char* msa, int nrow, int ncol) {
 
 	int n, i, j;
