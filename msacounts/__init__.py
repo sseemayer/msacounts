@@ -13,6 +13,14 @@ def read_msa(f, return_indices=True):
 
     return msa
 
+
+def index_msa(msa, in_place=False):
+    if not in_place:
+        msa = msa.copy()
+
+    msac.msa_char_to_index(msa)
+    return msa
+
 def pair_counts(msa):
     nrow, ncol = msa.shape
     counts = msac.msa_count(ncol * ncol * 21 * 21, msa)
@@ -32,14 +40,4 @@ def pwm(counts, ignore_gaps=False):
     nrow = np.sum(singles, axis=1)
 
     return singles / nrow[:, np.newaxis]
-
-
-def index_msa(msa, in_place=False):
-    if in_place:
-        msai = msa
-    else:
-        msai = msa.copy()
-
-    msac.msa_char_to_index(msai)
-    return msai
 
