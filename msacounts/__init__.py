@@ -13,10 +13,26 @@ def read_msa(f, return_indices=True):
 
     return msa
 
-def count(msa):
+def pair_counts(msa):
     nrow, ncol = msa.shape
     counts = msac.msa_count(ncol * ncol * 21 * 21, msa)
     return np.reshape(counts, (ncol, ncol, 21, 21))
+
+
+def single_counts(counts):
+    return np.sum(counts[np.diag_indices(74)], axis=2)
+
+
+def pwm(counts, ignore_gaps=False):
+    singles = single_counts(counts)
+
+    if ignore_gaps:
+        singles = singles[:, 1:]
+
+    nrow = np.sum(singles, axis=1)
+
+    return singles / nrow[:, np.newaxis]
+
 
 def index_msa(msa, in_place=False):
     if in_place:
