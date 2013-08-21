@@ -8,6 +8,7 @@ setup(  name='msacounts',
         author='Stefan Seemayer',
         author_email='stefan@seemayer.de',
         packages=['msacounts'],
+        license='MIT',
 
         ext_modules=[
             Extension(  'msacounts/cext/_msacounts',
