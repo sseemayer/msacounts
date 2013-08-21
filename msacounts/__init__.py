@@ -3,8 +3,12 @@ import numpy as np
 
 def read_msa(f, return_indices=True):
 
-    with open(f, 'r') as o:
-        msa = o.readlines()
+    if isinstance(f, str):
+        with open(f, 'r') as o:
+            msa = o.readlines()
+    else:
+        msa = f
+
 
     msa = np.array([[ord(c) for c in x.strip()] for x in msa], dtype=np.uint8)
 
