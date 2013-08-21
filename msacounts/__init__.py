@@ -28,7 +28,7 @@ def pair_counts(msa):
 
 
 def single_counts(counts):
-    return np.sum(counts[np.diag_indices(74)], axis=2)
+    return np.sum(counts[np.diag_indices(counts.shape[0])], axis=2)
 
 
 def pwm(counts, ignore_gaps=False):
