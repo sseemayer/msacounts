@@ -1,4 +1,10 @@
+import os.path
+
 from distutils.core import setup, Extension
+from distutils.sysconfig import get_python_lib
+
+numpydir = os.path.join(get_python_lib(plat_specific=1), 'numpy', 'core', 'include')
+
 
 module = Extension('msacounts', sources=['src/msacounts.c'])
 
@@ -17,7 +23,7 @@ setup(  name='msacounts',
                             'msacounts/cext/msacounts.c'
                         ],
                         swig_opts=['-modern', '-Imsacounts/cext/'],
-                        include_dirs=['msacounts/cext']
+                        include_dirs=['msacounts/cext', numpydir]
            )
         ],
 
